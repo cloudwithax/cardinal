@@ -1,6 +1,6 @@
 # Chirp Next
 
-The Chirp project, remade in Next.js
+The Chirp project, originally by @actuallyaridan, remade in Next.js
 
 ## Getting started
 
@@ -10,7 +10,6 @@ First, make sure your .env has the following:
 DATABASE_URL="<your cockroachdb general connection string here >"
 JWT_SECRET="<your jwt secret here>"
 ```
-
 
 Then, run the development server:
 
