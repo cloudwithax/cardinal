@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Post from '@/components/Post';
 import Layout from '@/components/Layout';
+import { Settings } from "lucide-react";
 
 
 
@@ -17,7 +18,7 @@ export default function Page() {
         <div className="flex flex-row items-center justify-between border-b border-neutral-800 p-2">
           <h2 className="text-white text-lg">Home</h2>
           <Button variant="ghost" size="icon">
-            <Image src="/icons/settings.svg" alt="Logo" width={24} height={24} />
+            <Settings />
           </Button>
         </div>
 
