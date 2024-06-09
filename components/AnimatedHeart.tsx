@@ -19,7 +19,11 @@ const AnimatedHeart = () => {
                 exit={{ scale: 0.8, opacity: 0 }}
                 layout
             >
-                <Heart color={isLiked ? 'red' : 'white'} fill={isLiked ? 'red' : 'none'} />
+                <Heart
+                    size={20}
+                    color={isLiked ? 'red' : 'white'}
+                    fill={isLiked ? 'red' : 'none'}
+                />
             </motion.div>
         </div>
     );

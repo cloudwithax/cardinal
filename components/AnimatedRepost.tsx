@@ -19,7 +19,7 @@ const AnimatedRepost = () => {
                 exit={{ scale: 0.8, opacity: 0 }}
                 layout
             >
-                <Repeat color={isReposted ? '#5dff47' : 'white'} />
+                <Repeat size={20} color={isReposted ? '#5dff47' : 'white'} />
             </motion.div>
         </div>
     );
