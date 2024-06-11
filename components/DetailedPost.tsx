@@ -23,23 +23,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 
-
-export default function Post({ avatar, username, handle, content, media }: { avatar: React.ReactNode, username: string, handle: string, content: React.ReactNode, media?: React.ReactNode }) {
+export default function DetailedPost({ avatar, username, handle, content, media }: { avatar: React.ReactNode, username: string, handle: string, content: React.ReactNode, media?: React.ReactNode }) {
 
     const router = useRouter();
 
-    const handlePostClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        event.stopPropagation();
-        event.preventDefault();
-        router.push(`/${handle}/post/1`);
-    }
-
     return (
-        <div onClick={handlePostClick} className="flex flex-col border-b border-neutral-800 hover:bg-neutral-500/30 transition-all hover:cursor-pointer ">
-            <div className="flex flex-row gap-4 px-2 pt-4 pb-2">
+        <div className="flex flex-col">
+            <div className="flex flex-row gap-4 px-2 pt-4 pb-2 items-center">
                 {avatar}
                 <div className="flex flex-col gap-2">
-                    <div className="flex flex-row items-center gap-2">
+                    <div className="flex flex-col">
                         <HoverCard>
                             <HoverCardTrigger asChild>
                                 <Link href={`/${handle}`} className="text-white font-bold hover:underline">{username}</Link>
@@ -65,9 +58,7 @@ export default function Post({ avatar, username, handle, content, media }: { ava
                         </HoverCard>
                         <h3 className="text-neutral-400">@{handle}</h3>
                     </div>
-                    <div className="flex flex-col gap-2">
-                        {content}
-                    </div>
+
 
                     {media && (
                         <div className="flex flex-row">
@@ -77,15 +68,19 @@ export default function Post({ avatar, username, handle, content, media }: { ava
                 </div>
             </div>
 
+            <div className="py-4 pl-3.5 mb-2">
+                {content}
+            </div>
+
             {/* post controls */}
-            <div className="flex flex-row gap-8 px-2 pb-2 ml-12">
+            <div className="flex flex-row gap-8 py-1 pl-2 justify-evenly border-y  border-neutral-800 mx-4 ">
 
 
 
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="iconRound" onClick={(event) => event.stopPropagation()}>
+                            <Button variant="ghost" size="iconRound">
                                 <MessageCircle size={20} />
                             </Button>
                         </TooltipTrigger>
@@ -98,7 +93,7 @@ export default function Post({ avatar, username, handle, content, media }: { ava
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="iconRound" onClick={(event) => event.stopPropagation()}>
+                            <Button variant="ghost" size="iconRound">
                                 <AnimatedRepost />
                             </Button>
 
@@ -112,7 +107,7 @@ export default function Post({ avatar, username, handle, content, media }: { ava
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="iconRound" onClick={(event) => event.stopPropagation()}>
+                            <Button variant="ghost" size="iconRound">
                                 <AnimatedHeart />
                             </Button>
                         </TooltipTrigger>

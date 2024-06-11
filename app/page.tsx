@@ -8,6 +8,8 @@ import Layout from '@/components/Layout';
 import { useRouter } from 'next/navigation';
 import { use, useEffect, useRef, useState } from "react";
 import { Settings } from "lucide-react";
+import { motion } from 'framer-motion';
+
 
 import {
   Sheet,
@@ -31,6 +33,8 @@ export default function Page() {
   const [showTopBar, setShowTopBar] = useState(true);
   const prevScrollPos = useRef(0);
 
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -47,10 +51,26 @@ export default function Page() {
       observer.observe(topofTimelineRef.current);
     }
 
+    // event listener for window width, set isMobile to true if window width is less than 768px
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+
     return () => {
       if (topofTimelineRef.current) {
         observer.unobserve(topofTimelineRef.current);
       }
+
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -92,21 +112,25 @@ export default function Page() {
         <div className={`flex flex-col border-b border-neutral-800 sticky top-0 bg-black /50 backdrop-blur z-50 `}>
           <div className="md:hidden flex flex-row justify-between p-2">
             <div>
+
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="iconRound">
                     <Avatar><AvatarFallback>G</AvatarFallback></Avatar>
                   </Button>
                 </SheetTrigger>
-                <SheetContent side='left'>
-                  <div onClick={() => router.push('/guest')} className="flex flex-col items-start gap-6">
+
+                <SheetContent side='left' className="pr-20">
+
+
+                  <div className="flex flex-col items-start gap-6">
                     {/* Left column content */}
-                    <Button variant="ghost" size="iconRound">
+                    <Button onClick={() => router.push('/guest')} variant="ghost" size="iconRound">
                       <Avatar><AvatarFallback>G</AvatarFallback></Avatar>
                     </Button>
 
                     <div>
-                      <h2 className="text-xl font-bold tracking-tight">User</h2>
+                      <h2 onClick={() => router.push('/guest')} className="text-xl font-bold cursor-pointer hover:underline">User</h2>
                       <span className="text-neutral-400">@guest</span>
                     </div>
 
@@ -130,8 +154,11 @@ export default function Page() {
                     {/* post */}
 
                   </div>
+
                 </SheetContent>
               </Sheet>
+
+
 
             </div>
             <Button onClick={() => router.replace('/')} variant="ghost" size="iconRound">
@@ -140,8 +167,20 @@ export default function Page() {
             <div className="h-8 w-8"></div>
           </div>
 
+          {!isMobile && (
+            <div className="flex w-full justify-evenly">
+              <div className="relative flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
+                <span className="font-bold">For You</span>
+                <div className="absolute bottom-0 w-14 border-b-[3px] border-[#8465FF]"></div>
+              </div>
+              <div className="flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
+                <span className="font-bold text-neutral-400">Following</span>
+              </div>
+            </div>
+          )}
 
-          {isTopBarVisible && (
+
+          {isMobile && isTopBarVisible && (
             <div className="flex w-full justify-evenly">
               <div className="relative flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                 <span className="font-bold">For You</span>
