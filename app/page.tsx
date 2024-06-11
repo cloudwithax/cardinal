@@ -191,7 +191,7 @@ export default function Page() {
           avatar={<Avatar><AvatarFallback>K</AvatarFallback></Avatar>}
           username="Kevin Lee"
           handle="kevinlee88"
-          content={<p className="text-white">Just started learning guitar. It's fun!</p>}
+          content={<p className="text-white">{"Just started learning guitar. It's fun!"}</p>}
         />
 
         <Post
