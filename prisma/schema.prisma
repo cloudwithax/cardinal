@@ -23,13 +23,13 @@ model Post {
 }
 
 model Profile {
-  id       BigInt    @id @default(sequence())
-  bio      String?
-  dob      DateTime?
-  location String?
-  link     String?
-  user     User      @relation(fields: [userId], references: [id])
-  userId   BigInt    @unique
+  id        BigInt    @id @default(sequence())
+  bio       String?
+  dob       DateTime?
+  location  String?
+  link      String?
+  user      User      @relation(fields: [userId], references: [id])
+  userId    BigInt    @unique
 }
 
 model User {
@@ -37,6 +37,7 @@ model User {
   email         String         @unique
   username      String         @unique
   displayname   String?
+  password      String
   posts         Post[]
   profile       Profile?
   comments      Comment[]
@@ -48,6 +49,8 @@ model User {
   following     Follower[]     @relation("UserFollowing")
   settings      UserSettings?
   Reshare       Reshare[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
 model Comment {

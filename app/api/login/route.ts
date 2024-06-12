@@ -1,34 +1,41 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 import { prisma } from "@/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET: string = process.env.JWT_SECRET as string;
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "POST") {
-    res.status(405).json({ message: "Method Not Allowed" });
-    return;
-  }
+export default async function POST(req: NextRequest) {
+  const res = await req.json();
 
-  const { username, password } = req.body;
+  const { username, password } = res;
 
-  const user = prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       username: username,
     },
   });
 
-  if (username === "admin" && password === "password") {
-    // Generate JWT token
-    const token = jwt.sign(
-      { username, password },
-      process.env.JWT_SECRET as string
+  if (!user) {
+    return NextResponse.json(
+      { message: "Invalid username or password" },
+      { status: 401 }
     );
-
-    res.status(200).json({ token });
-  } else {
-    res.status(401).json({ message: "Invalid credentials" });
   }
-};
 
-export default handler;
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if (!isPasswordValid) {
+    return NextResponse.json(
+      { message: "Invalid username or password" },
+      { status: 401 }
+    );
+  }
+
+  const token = jwt.sign({ username }, JWT_SECRET, {
+    expiresIn: "30d",
+  });
+
+  return NextResponse.json({ token }, { status: 200 });
+}

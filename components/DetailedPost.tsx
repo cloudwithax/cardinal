@@ -31,7 +31,9 @@ export default function DetailedPost({ avatar, username, handle, content, media 
     return (
         <div className="flex flex-col">
             <div className="flex flex-row gap-4 px-2 pt-4 pb-2 items-center">
-                {avatar}
+                <Avatar >
+                    <AvatarFallback>{avatar}</AvatarFallback>
+                </Avatar>
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-col">
                         <HoverCard>
@@ -40,7 +42,9 @@ export default function DetailedPost({ avatar, username, handle, content, media 
                             </HoverCardTrigger>
                             <HoverCardContent className="w-80">
                                 <div className="flex justify-start gap-4">
-                                    {avatar}
+                                    <Avatar >
+                                        <AvatarFallback>{avatar}</AvatarFallback>
+                                    </Avatar>
                                     <div className="flex flex-col gap-1">
                                         <Link href={`/${handle}`} className="text-white font-bold hover:underline">{username}</Link>
                                         <h4 className="text-sm text-gray-500">@{handle}</h4>

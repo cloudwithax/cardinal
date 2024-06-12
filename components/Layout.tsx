@@ -1,25 +1,103 @@
-import { ChevronRight } from "lucide-react"
+import { BarChart3, ChevronRight, ImageIcon, Plus, Smile } from "lucide-react"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import Post from '@/components/Post';
+import { EmojiStyle, Theme } from 'emoji-picker-react';
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import { useRouter } from "next/navigation";
+
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
+import { DestyledPopover, DestyledPopoverContent, DestyledPopoverTrigger } from "@/components/ui/destyledpopover"
+
+import { Textarea } from "@/components/ui/textarea"
+import EmojiPicker from 'emoji-picker-react';
+import { useRef, useState } from "react";
+import Twemoji from 'react-twemoji';
+
+
+
+
+function PostDialog({ trigger }: { trigger: React.ReactNode }) {
+    const inputRef = useRef<HTMLTextAreaElement>(null);
+
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                {trigger}
+            </DialogTrigger>
+            <DialogContent className="w-2xl items-center absolute top-[15rem]">
+
+                <div className="flex flex-col gap-4">
+                    <Textarea
+                        rows={4}
+                        maxLength={280}
+                        ref={inputRef}
+                        placeholder="What's happening?"
+                        className="w-full overflow-y-hidden text-lg mt-12 resize-none border-none focus:border-none focus:ring-0 focus:ring-offset-0 bg-black text-white"
+                        onInput={(event) => {
+                            event.currentTarget.style.height = "auto";
+                            event.currentTarget.style.height = event.currentTarget.scrollHeight + "px";
+
+                        }}
+
+                    />
+
+                    {/* media */}
+                    <div className="flex flex-row gap-2">
+                        <Button size="iconRound" variant="ghost">
+                            <ImageIcon stroke="grey" />
+                        </Button>
+
+                        <DestyledPopover modal>
+                            <DestyledPopoverTrigger asChild>
+                                <Button size="iconRound" variant="ghost">
+                                    <Smile stroke="grey" />
+                                </Button>
+                            </DestyledPopoverTrigger>
+                            <DestyledPopoverContent>
+                                <EmojiPicker emojiVersion={"11"} theme={Theme.DARK} emojiStyle={EmojiStyle.TWITTER} lazyLoadEmojis={true} onEmojiClick={
+                                    (emojiObject, event) => {
+                                        if (inputRef.current) {
+                                            inputRef.current.value += emojiObject.emoji;
+                                        }
+                                    }
+                                } />
+                            </DestyledPopoverContent>
+                        </DestyledPopover>
+
+                    </div>
+
+
+                    <DialogFooter>
+                        <Button size="defaultRound" variant="ghost" className='bg-[#DD2E44]' type="submit">Post</Button>
+                    </DialogFooter>
+                </div>
+            </DialogContent>
+
+        </Dialog>
+    )
+}
 
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
     const router = useRouter();
+
+
 
 
     return (
@@ -68,13 +146,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         </div>
                     </Button>
 
-                    {/* post */}
+                    <PostDialog trigger={
+                        <Button size="defaultRound" variant="ghost" className='bg-[#DD2E44]'>
+                            <div className='flex flex-row gap-2 items-center '>
+                                <h2 className='text-white text-lg w-40'>Post</h2>
+                            </div>
+                        </Button>
+                    } />
 
-                    <Button size="defaultRound" variant="ghost" className='bg-[#DD2E44]'>
-                        <div className='flex flex-row gap-2 items-center '>
-                            <h2 className='text-white text-lg w-40'>Post</h2>
-                        </div>
-                    </Button>
+
                 </div>
 
                 {/* user */}
@@ -99,32 +179,43 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* timeline section */}
             <div className="w-full lg:w-[67ch] h-auto">
                 {children}
-                <div className="md:hidden h-16 flex justify-evenly items-center border-t border-neutral-800 sticky bottom-0 border-x bg-black/80 backdrop-blur z-50">
-                    <Button onClick={() => router.push('/')} size="defaultRound" variant="ghost" className='flex p-2'>
-                        <div className='flex flex-row gap-2 items-center'>
-                            <Image src="/icons/house.svg" alt="Logo" width={32} height={32} />
-                        </div>
-                    </Button>
+                <div className="flex flex-col md:hidden h-auto sticky bottom-0 z-50">
+                    <div className="flex flex-row justify-end mb-4 px-4">
+                        <PostDialog trigger={
+                            <Button onClick={() => router.push('/')} size="iconRound" variant="ghost" className='h-14 w-14 bg-[#DD2E44]'>
+                                <Plus />
+                            </Button>
+                        } />
+                    </div>
+                    <div className="flex md:hidden justify-evenly h-16 items-center border-t border-neutral-800 border-x bg-black/80 backdrop-blur w-full">
+                        <Button onClick={() => router.push('/')} size="defaultRound" variant="ghost" className='flex p-2'>
+                            <div className='flex flex-row gap-2 items-center'>
+                                <Image src="/icons/house.svg" alt="Logo" width={32} height={32} />
+                            </div>
+                        </Button>
 
-                    <Button onClick={() => router.push('/explore')} size="defaultRound" variant="ghost" className='flex p-2'>
-                        <div className='flex flex-row gap-2 items-center'>
-                            <Image src="/icons/search.svg" alt="Logo" width={32} height={32} />
-                        </div>
-                    </Button>
+                        <Button onClick={() => router.push('/explore')} size="defaultRound" variant="ghost" className='flex p-2'>
+                            <div className='flex flex-row gap-2 items-center'>
+                                <Image src="/icons/search.svg" alt="Logo" width={32} height={32} />
+                            </div>
+                        </Button>
 
-                    <Button onClick={() => router.push('/notifications')} size="defaultRound" variant="ghost" className='flex p-2'>
-                        <div className='flex flex-row gap-2 items-center'>
-                            <Image src="/icons/bell.svg" alt="Logo" width={32} height={32} />
-                        </div>
-                    </Button>
+                        <Button onClick={() => router.push('/notifications')} size="defaultRound" variant="ghost" className='flex p-2'>
+                            <div className='flex flex-row gap-2 items-center'>
+                                <Image src="/icons/bell.svg" alt="Logo" width={32} height={32} />
+                            </div>
+                        </Button>
 
-                    <Button onClick={() => router.push('/messages')} size="defaultRound" variant="ghost" className='flex p-2'>
-                        <div className='flex flex-row gap-2 items-center'>
-                            <Image src="/icons/envelope.svg" alt="Logo" width={32} height={32} />
-                        </div>
-                    </Button>
+                        <Button onClick={() => router.push('/messages')} size="defaultRound" variant="ghost" className='flex p-2'>
+                            <div className='flex flex-row gap-2 items-center'>
+                                <Image src="/icons/envelope.svg" alt="Logo" width={32} height={32} />
+                            </div>
+                        </Button>
+
+                    </div>
 
                 </div>
+
 
             </div>
 

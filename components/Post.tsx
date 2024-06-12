@@ -38,7 +38,9 @@ export default function Post({ avatar, username, handle, content, media }: { ava
     return (
         <div onClick={handlePostClick} className="flex flex-col border-b border-neutral-800 hover:bg-neutral-500/30 transition-all hover:cursor-pointer ">
             <div className="flex flex-row gap-4 px-2 pt-4 pb-2">
-                {avatar}
+                <Avatar>
+                    <AvatarFallback>{avatar}</AvatarFallback>
+                </Avatar>
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-row items-center gap-2">
                         <HoverCard>
@@ -47,7 +49,9 @@ export default function Post({ avatar, username, handle, content, media }: { ava
                             </HoverCardTrigger>
                             <HoverCardContent className="w-80">
                                 <div className="flex justify-start gap-4">
-                                    {avatar}
+                                    <Avatar>
+                                        <AvatarFallback>{avatar}</AvatarFallback>
+                                    </Avatar>
                                     <div className="flex flex-col gap-1">
                                         <Link href={`/${handle}`} className="text-white font-bold hover:underline">{username}</Link>
                                         <h4 className="text-sm text-gray-500">@{handle}</h4>

@@ -19,7 +19,7 @@ export default function PostPage() {
                     </div>
                 </div>
 
-                <DetailedPost avatar={<Avatar><AvatarFallback>U</AvatarFallback></Avatar>} username="User" handle="user" content={<p className="text-white">Test of the detailed post</p>} />
+                <DetailedPost avatar={"user"} username="User" handle="user" content={"Test of the detailed post"} />
 
             </div>
         </Layout>
