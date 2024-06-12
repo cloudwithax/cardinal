@@ -37,9 +37,9 @@ Then, deploy the Prisma schema to the database:
 npx prisma migrate deploy
 ```
 
-You have the option of either starting the development server to do rapid prototyping for changes
-or just to implement your own for your own needs, or starting the production server, which will build and serve
-the app to which you can further configure to point to a domain.
+You have the option of either starting the production server, which will build and serve
+the app to which you can further configure to point to a domain, or the development server to do rapid prototyping for changes
+or just to implement your own for your own needs.
 
 To run the production server:
 
@@ -76,4 +76,3 @@ If you want to contribute to Cardinal, feel free to fork the repo and submit a p
 # License
 
 Cardinal is licensed under the AGPL-3.0 License. See the LICENSE file for more information.
-
