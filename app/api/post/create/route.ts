@@ -4,10 +4,10 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 
 const JWT_SECRET: string = process.env.JWT_SECRET as string;
 
-export default async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
   const res = await req.json();
 
-  const { token, title, content, media } = res;
+  const { token, content, media } = res;
 
   if (!token) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
@@ -27,7 +27,6 @@ export default async function POST(req: NextRequest) {
 
   await prisma.post.create({
     data: {
-      title: title,
       content: content,
       media: media,
       author: {

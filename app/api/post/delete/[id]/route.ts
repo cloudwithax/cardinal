@@ -5,7 +5,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 
 const JWT_SECRET: string = process.env.JWT_SECRET as string;
 
-export default async function DELETE(
+export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {

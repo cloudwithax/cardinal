@@ -11,7 +11,6 @@ model Post {
   id        BigInt    @id @default(sequence())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  title     String?
   content   String?
   published Boolean   @default(false)
   author    User      @relation(fields: [authorId], references: [id])
