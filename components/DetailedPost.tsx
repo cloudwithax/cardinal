@@ -21,9 +21,10 @@ import {
 } from "@/components/ui/hover-card"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { RenderMessage } from "./RenderMessage";
 
 
-export default function DetailedPost({ avatar, username, handle, content, media }: { avatar: React.ReactNode, username: string, handle: string, content: React.ReactNode, media?: React.ReactNode }) {
+export default function DetailedPost({ avatar, username, handle, content, media }: { avatar: string, username: string, handle: string, content: string, media?: string[] }) {
 
     const router = useRouter();
 
@@ -69,7 +70,7 @@ export default function DetailedPost({ avatar, username, handle, content, media 
             </div>
 
             <div className="py-4 pl-3.5 mb-2">
-                {content}
+                <RenderMessage>{content}</RenderMessage>
             </div>
 
             {/* post controls */}

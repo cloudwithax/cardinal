@@ -127,7 +127,7 @@ export default function ExplorePage() {
 
                         </div>
                         <Button onClick={() => router.replace('/')} variant="ghost" size="iconRound">
-                            <Image src="/icons/chirp.svg" alt="Logo" width={32} height={32} />
+                            <Image src="/icons/bird.svg" alt="Logo" width={32} height={32} />
                         </Button>
                         <div className="h-8 w-8"></div>
                     </div>
@@ -144,7 +144,7 @@ export default function ExplorePage() {
                             <div className="flex w-full justify-evenly">
                                 <div className="relative flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                                     <span className="font-bold">For You</span>
-                                    <div className="absolute bottom-0 w-14 border-b-[3px] border-[#8465FF]"></div>
+                                    <div className="absolute bottom-0 w-14 border-b-[3px] border-[#DD2E44]"></div>
                                 </div>
                                 <div className="flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                                     <span className="font-bold text-neutral-400">Trending</span>

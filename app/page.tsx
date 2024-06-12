@@ -35,6 +35,69 @@ export default function Page() {
 
   const [isMobile, setIsMobile] = useState(false);
 
+  const posts = [
+    {
+      avatar: "johns",
+      username: "John Smith",
+      handle: "johns",
+      content: "Just finished reading a great book!",
+    },
+    {
+      avatar: "emilyw",
+      username: "Emily Watson",
+      handle: "emilyw",
+      content: "Excited for the weekend getaway!",
+    },
+    {
+      avatar: "davidm",
+      username: "David Miller",
+      handle: "davidm",
+      content: "Trying out a new recipe tonight!",
+    },
+    {
+      avatar: "sarahc",
+      username: "Sarah Clark",
+      handle: "sarahc",
+      content: "Exploring a new hiking trail!",
+    },
+    {
+      avatar: "mikep",
+      username: "Mike Peterson",
+      handle: "mikep",
+      content: "Attending a coding conference this week!",
+    },
+    {
+      avatar: "julial",
+      username: "Julia Lee",
+      handle: "julial",
+      content: "Enjoying a cup of coffee in the morning.",
+    },
+    {
+      avatar: "alexh",
+      username: "Alex Harris",
+      handle: "alexh",
+      content: "Working on a new project. Exciting times!",
+    },
+    {
+      avatar: "laurab",
+      username: "Laura Brown",
+      handle: "laurab",
+      content: "Celebrating my birthday with friends!",
+    },
+    {
+      avatar: "chrisw",
+      username: "Chris Wilson",
+      handle: "chrisw",
+      content: "Watching my favorite TV show tonight.",
+    },
+    {
+      avatar: "amandar",
+      username: "Amanda Roberts",
+      handle: "amandar",
+      content: "Spending quality time with family.",
+    },
+  ];
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -162,7 +225,7 @@ export default function Page() {
 
             </div>
             <Button onClick={() => router.replace('/')} variant="ghost" size="iconRound">
-              <Image src="/icons/chirp.svg" alt="Logo" width={32} height={32} />
+              <Image src="/icons/bird.svg" alt="Logo" width={32} height={32} />
             </Button>
             <div className="h-8 w-8"></div>
           </div>
@@ -171,7 +234,7 @@ export default function Page() {
             <div className="flex w-full justify-evenly">
               <div className="relative flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                 <span className="font-bold">For You</span>
-                <div className="absolute bottom-0 w-14 border-b-[3px] border-[#8465FF]"></div>
+                <div className="absolute bottom-0 w-14 border-b-[3px] border-[#DD2E44]"></div>
               </div>
               <div className="flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                 <span className="font-bold text-neutral-400">Following</span>
@@ -184,7 +247,7 @@ export default function Page() {
             <div className="flex w-full justify-evenly">
               <div className="relative flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                 <span className="font-bold">For You</span>
-                <div className="absolute bottom-0 w-14 border-b-[3px] border-[#8465FF]"></div>
+                <div className="absolute bottom-0 w-14 border-b-[3px] border-[#DD2E44]"></div>
               </div>
               <div className="flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                 <span className="font-bold text-neutral-400">Following</span>
@@ -196,94 +259,24 @@ export default function Page() {
 
         <div ref={topofTimelineRef}></div>
 
-        <Post avatar={<Avatar><AvatarFallback>U</AvatarFallback></Avatar>} username="User" handle="user" content={<p className="text-white">Hi from Next.js!</p>} />
-        <Post avatar={<Avatar><AvatarFallback>J</AvatarFallback></Avatar>} username="John Appleseed" handle="jappleseed1" content={<p className="text-white">The grass is so green today.</p>} />
         <Post
-          avatar={<Avatar><AvatarFallback>M</AvatarFallback></Avatar>}
+          avatar={"maryj"}
           username="Mary Johnson"
           handle="maryj"
-          content={<p className="text-white">Enjoying a sunny day at the beach!</p>}
+          content={"Enjoying a sunny day at the beach!"}
         />
 
-        <Post
-          avatar={<Avatar><AvatarFallback>A</AvatarFallback></Avatar>}
-          username="Alex Brown"
-          handle="alexb123"
-          content={<p className="text-white">Just finished a great workout.</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>C</AvatarFallback></Avatar>}
-          username="Chris Evans"
-          handle="chrisevans"
-          content={<p className="text-white">Reading a fascinating book on AI.</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>S</AvatarFallback></Avatar>}
-          username="Sophia Martinez"
-          handle="sophiam"
-          content={<p className="text-white">Loving the new cafe in town!</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>K</AvatarFallback></Avatar>}
-          username="Kevin Lee"
-          handle="kevinlee88"
-          content={<p className="text-white">{"Just started learning guitar. It's fun!"}</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>T</AvatarFallback></Avatar>}
-          username="Tina Wang"
-          handle="tinawang9"
-          content={<p className="text-white">Beautiful sunset today.</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>L</AvatarFallback></Avatar>}
-          username="Liam Smith"
-          handle="liamsmith"
-          content={<p className="text-white">Had an amazing day hiking!</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>N</AvatarFallback></Avatar>}
-          username="Natalie Kim"
-          handle="nataliekim"
-          content={<p className="text-white">Trying out a new recipe tonight.</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>D</AvatarFallback></Avatar>}
-          username="David Brown"
-          handle="davidb"
-          content={<p className="text-white">Watching a great movie tonight.</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>E</AvatarFallback></Avatar>}
-          username="Emily Davis"
-          handle="emilydavis"
-          content={<p className="text-white">Had a fun day at the park.</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>P</AvatarFallback></Avatar>}
-          username="Paul Green"
-          handle="paulg"
-          content={<p className="text-white">Just bought a new bike!</p>}
-        />
-
-        <Post
-          avatar={<Avatar><AvatarFallback>R</AvatarFallback></Avatar>}
-          username="Rachel Adams"
-          handle="rachela"
-          content={<p className="text-white">Excited for the weekend trip.</p>}
-        />
-
-
-
+        <>
+          {posts.map((post, index) => (
+            <Post
+              key={index}
+              avatar={post.avatar}
+              username={post.username}
+              handle={post.handle}
+              content={post.content}
+            />
+          ))}
+        </>
 
       </div>
     </Layout >

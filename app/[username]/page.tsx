@@ -41,7 +41,7 @@ export default function UserPage() {
                     <Avatar className='-mt-[4.5rem] h-32 w-32 cursor-pointer rounded-full z-50'>
                         <AvatarFallback>{username}</AvatarFallback>
                     </Avatar>
-                    <Button size="defaultRound" variant="ghost" className='bg-[#8465FF]'>
+                    <Button size="defaultRound" variant="ghost" className='bg-[#DD2E44]'>
                         <div className='flex flex-row gap-2 items-center '>
                             <h2 className='text-white text-sm'>Edit profile</h2>
                         </div>
@@ -85,8 +85,8 @@ export default function UserPage() {
 
                 <ul className="mt-3 flex justify-evenly border-b border-neutral-800">
                     <li className="relative flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
-                        <span className="font-bold">Chirps</span>
-                        <div className="absolute bottom-0 w-14 border-b-[3px] border-[#8465FF]"></div>
+                        <span className="font-bold">Posts</span>
+                        <div className="absolute bottom-0 w-14 border-b-[3px] border-[#DD2E44]"></div>
                     </li>
                     <li className="flex w-full items-center justify-center p-4 hover:bg-neutral-500/30 transition-all hover:cursor-pointer rounded-md">
                         <span className="font-bold text-neutral-400">Replies</span>

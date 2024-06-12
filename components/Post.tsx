@@ -21,10 +21,11 @@ import {
 } from "@/components/ui/hover-card"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { RenderMessage } from "./RenderMessage";
 
 
 
-export default function Post({ avatar, username, handle, content, media }: { avatar: React.ReactNode, username: string, handle: string, content: React.ReactNode, media?: React.ReactNode }) {
+export default function Post({ avatar, username, handle, content, media }: { avatar: string, username: string, handle: string, content: string, media?: string[] }) {
 
     const router = useRouter();
 
@@ -66,7 +67,7 @@ export default function Post({ avatar, username, handle, content, media }: { ava
                         <h3 className="text-neutral-400">@{handle}</h3>
                     </div>
                     <div className="flex flex-col gap-2">
-                        {content}
+                        <RenderMessage>{content}</RenderMessage>
                     </div>
 
                     {media && (

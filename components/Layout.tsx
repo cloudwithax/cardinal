@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <div className="flex flex-col items-start gap-6">
                     {/* Left column content */}
                     <Button onClick={() => router.push('/')} variant="ghost" size="iconRound">
-                        <Image src="/icons/chirp.svg" alt="Logo" width={32} height={32} />
+                        <Image src="/icons/bird.svg" alt="Logo" width={32} height={32} />
                     </Button>
 
                     <Button onClick={() => router.push('/')} size="defaultRound" variant="ghost" className='flex p-2'>
@@ -70,9 +70,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
                     {/* post */}
 
-                    <Button size="defaultRound" variant="ghost" className='bg-[#8465FF]'>
+                    <Button size="defaultRound" variant="ghost" className='bg-[#DD2E44]'>
                         <div className='flex flex-row gap-2 items-center '>
-                            <h2 className='text-white text-lg w-40'>Chirp</h2>
+                            <h2 className='text-white text-lg w-40'>Post</h2>
                         </div>
                     </Button>
                 </div>

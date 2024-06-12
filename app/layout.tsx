@@ -15,8 +15,8 @@ const fontSans = FontSans({
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Home / Chirp",
-  description: "Chirp: a social media project",
+  title: "Home / Cardinal",
+  description: "The way microblogging should be.",
 
 };
 
