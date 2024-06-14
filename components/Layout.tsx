@@ -103,7 +103,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 
     return (
-        <div className='bg-black flex flex-row relative h-screen w-svw max-w-svw overflow-x-hidden' suppressHydrationWarning>
+        <div className='bg-black flex flex-row relative h-svh max-h-svh w-svw max-w-svw overflow-x-hidden' suppressHydrationWarning>
             {/* left column */}
             <div className="md:flex hidden flex-col p-4 pr-14 justify-between sticky top-0 items-end gap-4 w-1/3 min-h-screen">
                 <div className="flex flex-col items-start gap-6">
