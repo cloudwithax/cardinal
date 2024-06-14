@@ -1,4 +1,4 @@
-import { BarChart3, ChevronRight, ImageIcon, Plus, Smile } from "lucide-react"
+import { BadgeCheck, BarChart3, CalendarDays, ChevronRight, ImageIcon, Plus, Smile } from "lucide-react"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
@@ -26,6 +26,8 @@ import { Textarea } from "@/components/ui/textarea"
 import EmojiPicker from 'emoji-picker-react';
 import { useRef, useState } from "react";
 import Twemoji from 'react-twemoji';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import Link from "next/link";
 
 
 
@@ -231,18 +233,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         </CardHeader>
                         <CardContent>
                             <Button variant="ghost" className="flex flex-col w-full items-start py-8 px-2">
-                                <h2 className="text-white">Gay People</h2>
-                                <h3 className="text-neutral-400">12 chirps</h3>
+                                <h2 className="text-white">Hello World</h2>
+                                <h3 className="text-neutral-400">1.2k posts</h3>
                             </Button>
 
                             <Button variant="ghost" className="flex flex-col w-full items-start py-8 px-2">
                                 <h2 className="text-white">twitter</h2>
-                                <h3 className="text-neutral-400">47 chirps</h3>
+                                <h3 className="text-neutral-400">489 posts</h3>
                             </Button>
 
                             <Button variant="ghost" className="flex flex-col w-full items-start py-8 px-2">
-                                <h2 className="text-white">iphone 69</h2>
-                                <h3 className="text-neutral-400">62 chirps</h3>
+                                <h2 className="text-white">iPhone 14</h2>
+                                <h3 className="text-neutral-400">298 posts</h3>
                             </Button>
                         </CardContent>
                     </Card>
@@ -259,8 +261,42 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     <div className="flex flex-row gap-2">
                                         <Avatar><AvatarFallback>A</AvatarFallback></Avatar>
                                         <div className="flex flex-col text-left">
-                                            <h2 className="text-white">Apple</h2>
+                                            <div className="flex flex-row gap-1 items-center">
+                                                <HoverCard>
+                                                    <HoverCardTrigger asChild>
+                                                        <Link href={`/apple`} className="text-white font-bold hover:underline">Apple</Link>
+                                                    </HoverCardTrigger>
+                                                    <HoverCardContent className="w-80">
+                                                        <div className="flex justify-start gap-4">
+                                                            <Avatar>
+                                                                <AvatarFallback>A</AvatarFallback>
+                                                            </Avatar>
+                                                            <div className="flex flex-col gap-1">
+                                                                <div className="flex flex-row gap-1 items-center">
+                                                                    <Link href={`/apple`} className="text-white font-bold hover:underline">Apple</Link>
+
+                                                                    <BadgeCheck className="text-[#DD2E44]" height={16} width={16} />
+
+                                                                </div>
+                                                                <h4 className="text-sm text-gray-500">@apple</h4>
+                                                                <p className="text-sm">
+                                                                    Test description
+                                                                </p>
+                                                                <div className="flex items-center pt-2">
+                                                                    <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
+                                                                    <span className="text-xs text-muted-foreground">
+                                                                        Joined May 2024
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </HoverCardContent>
+                                                </HoverCard>
+                                                <BadgeCheck className="text-[#DD2E44]" height={16} width={16} />
+                                            </div>
+
                                             <h2 className="text-neutral-400">@apple</h2>
+
                                         </div>
                                     </div>
                                     <div>
@@ -274,7 +310,39 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     <div className="flex flex-row gap-2">
                                         <Avatar><AvatarFallback>P</AvatarFallback></Avatar>
                                         <div className="flex flex-col text-left">
-                                            <h2 className="text-white">President Biden</h2>
+                                            <div className="flex flex-row gap-1 items-center text-nowrap">
+                                                <HoverCard>
+                                                    <HoverCardTrigger asChild>
+                                                        <Link href={`/POTUS`} className="text-white font-bold hover:underline">President Biden</Link>
+                                                    </HoverCardTrigger>
+                                                    <HoverCardContent className="w-80">
+                                                        <div className="flex justify-start gap-4">
+                                                            <Avatar>
+                                                                <AvatarFallback>P</AvatarFallback>
+                                                            </Avatar>
+                                                            <div className="flex flex-col gap-1">
+                                                                <div className="flex flex-row gap-1 items-center text-nowrap">
+                                                                    <Link href={`/POTUS`} className="text-white font-bold hover:underline">President Biden</Link>
+
+                                                                    <BadgeCheck className="text-[#DD2E44]" height={16} width={16} />
+
+                                                                </div>
+                                                                <h4 className="text-sm text-gray-500">@POTUS</h4>
+                                                                <p className="text-sm">
+                                                                    Test description
+                                                                </p>
+                                                                <div className="flex items-center pt-2">
+                                                                    <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
+                                                                    <span className="text-xs text-muted-foreground">
+                                                                        Joined May 2024
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </HoverCardContent>
+                                                </HoverCard>
+                                                <BadgeCheck className="text-[#DD2E44]" height={16} width={16} />
+                                            </div>
                                             <h2 className="text-neutral-400">@POTUS</h2>
                                         </div>
                                     </div>
@@ -285,9 +353,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                             </div>
                         </CardContent>
                     </Card>
+
+                    {/* copyright info and other links and stuff */}
+
+                    <div className="flex flex-col w-[20rem] pl-4">
+                        <div className="flex flex-row gap-2 items-center">
+                            <Image src="/icons/bird.svg" alt="Logo" width={16} height={16} />
+                            <h2 className="text-neutral-400 text-sm">© 2024 cardinal.social</h2>
+                        </div>
+
+                    </div>
+
+
                 </div>
 
-                {/* user */}
+
+
+
+
 
 
             </div>
